@@ -35,7 +35,6 @@ class ext_grid:
         """
         # Calculate initial armature current
         Ia0 = np.conj(S0 / vt0)
-        phi0 = np.angle(Ia0)
         
         # Calculate steady state machine emf (i.e. voltage behind synchronous reactance)
         Eq0 = vt0 + np.complex(0,self.params['Xdp']) * Ia0
