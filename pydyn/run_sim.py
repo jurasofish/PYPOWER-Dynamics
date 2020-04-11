@@ -164,12 +164,17 @@ def run_sim(ppc, elements, dynopt = None, events = None, recorder = None):
             
             if refactorise == True:
                 # Rebuild Ybus from new ppc_int
+
+                prev_ybus = Ybus.todense().copy()
+
                 ppc_int = ext2int(ppc)
                 baseMVA, bus, branch = ppc_int["baseMVA"], ppc_int["bus"], ppc_int["branch"]
                 Ybus, Yf, Yt = makeYbus(baseMVA, bus, branch)
                 
                 # Rebuild modified Ybus
                 Ybus = mod_Ybus(Ybus, elements, bus, ppc_int['gen'], baseMVA)
+
+                ybus_delta = np.array(Ybus - prev_ybus)
                 
                 # Refactorise Ybus
                 Ybus_inv = splu(Ybus)
