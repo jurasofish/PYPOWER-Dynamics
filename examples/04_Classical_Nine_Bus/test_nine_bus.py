@@ -73,10 +73,23 @@ if __name__ == '__main__':
     rel_delta2 = np.array(oRecord.results['GEN3:delta']) - np.array(oRecord.results['GEN1:delta']) 
     
     # Plot variables
-    plt.plot(oRecord.t_axis,rel_delta1 * 180 / np.pi, 'r-', oRecord.t_axis, rel_delta2 *180 / np.pi, 'b-')
-    #plt.plot(oRecord.t_axis, oRecord.results['GEN1:omega'])
+    # plt.plot(oRecord.t_axis,rel_delta1 * 180 / np.pi, 'r-', oRecord.t_axis, rel_delta2 *180 / np.pi, 'b-')
+
+    plt.figure()
+    plt.plot(oRecord.t_axis, oRecord.results['GEN1:delta'])
     plt.xlabel('Time (s)')
-    plt.ylabel('Rotor Angles (relative to GEN1)')
+    plt.ylabel('Gen1 delta')
+
+    plt.figure()
+    plt.plot(oRecord.t_axis, oRecord.results['GEN1:omega'])
+    plt.xlabel('Time (s)')
+    plt.ylabel('Gen1 omega')
+
+    plt.figure()
+    plt.plot(oRecord.t_axis, oRecord.results['GEN1:Vt'])
+    plt.xlabel('Time (s)')
+    plt.ylabel('Gen1 Vt')
+
     plt.show()
     
     # Write recorded variables to output file
